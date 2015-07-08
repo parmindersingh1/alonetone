@@ -1,0 +1,35 @@
+<div id="user_index">
+  <div id="static_header">  
+    <div class="title">
+      <h1 class="static">Browse all alonetone artists</h1>
+    </div>
+    
+    <div id="links">
+      <ul class="links">
+       <%= user_nav_item "last seen&nbsp;".html_safe, {:action => 'index', :sort => nil} %>
+       <%= user_nav_item "new artists", {:action => 'index', :sort => 'last_uploaded'}%>
+       <%= user_nav_item "monster uploaders", {:action => 'index', :sort => 'monster_uploaders'} %>
+       <%= user_nav_item "dedicated listeners", {:action => 'index', :sort => 'dedicated_listeners'}%>
+       <%= user_nav_item "recently joined", {:action => 'index', :sort => 'recently_joined'} %>
+       <!-- <%= user_nav_item "by location", {:action => 'index', :sort => 'map'} %>      -->
+       <%= user_nav_item "on twitter", {:action => 'index', :sort => 'on_twitter'} %>
+      </ul>
+      <%= will_paginate @users if @users && params[:sort] != "map"%>
+    </div>
+  </div>
+  
+  <div id="large_users_grid">
+    <% if @sort == 'dedicated_listeners'%>
+      <% cache("dedicated-#{params[:page]}", :expires_in => 4.hours) do %>
+        <%= render :partial => 'shared/user', :collection => @users %>
+      <% end %>
+    <% else %>
+      <% cache("#{digest_for_users}-#{params[:page]}") do %>
+        <%= render :partial => 'shared/user', :collection => @users %>
+      <% end %>
+    <% end %>
+    <div class="clear"> </div>
+  </div>
+
+  <div style="float:none;clear:both;"> </div>
+</div>

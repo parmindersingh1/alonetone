@@ -1,0 +1,11 @@
+<%= render :partial => 'users/user' %>
+
+<% content_for :main do %>
+  <div id="single_playlist">
+    <% cache([@playlist, authorized_for(@playlist)]) do %>
+      <%= render @playlist %>
+    <% end unless (@playlist.private? && authorized_for(@playlist)) # don't cache private playlists %>
+  </div>  	
+
+  <%= render :partial => 'share', :locals => {:playlist => @playlist} %>
+<% end %>

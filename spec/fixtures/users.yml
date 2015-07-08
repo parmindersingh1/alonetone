@@ -1,0 +1,69 @@
+# admin
+sudara:
+  id: 1
+  login: sudara
+  email: sudara@modernthings.net
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 5.days.ago.to_s :db %>
+  activated_at: <%= 5.days.ago.to_s :db %>
+  updated_at: <%= 5.days.ago.to_s :db %>
+  admin: true
+  
+# normal   
+arthur:
+  id: 2
+  login: arthur
+  email: arthur@example.com
+  salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("test" + salt) %>
+  created_at: <%= 1.days.ago.to_s :db %>
+  activated_at: <%= 5.days.ago.to_s :db %>
+  updated_at: <%= 1.days.ago.to_s :db %>
+  last_request_at: <%= 1.days.ago.to_s :db %>
+  current_login_ip: 9.9.9.9
+  
+# deleted
+aaron:
+  id: 3
+  login: aaron
+  email: aaron@example.com
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 1.days.ago.to_s :db %>
+  updated_at: <%= 1.days.ago.to_s :db %>
+  deleted_at: <%= 5.hours.ago.to_s :db %>
+  
+# not activated
+not_activated:
+  id: 4
+  email: ben@example.com
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 1.days.ago.to_s :db %>
+  updated_at: <%= 1.days.ago.to_s :db %>
+  perishable_token: 8eou87daoeuhdtn
+  
+# moderator
+sandbags:
+  id: 5
+  login: sandbags
+  email: sandbags@example.com
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 1.days.ago.to_s :db %>
+  activated_at: <%= 5.days.ago.to_s :db %>
+  updated_at: <%= 1.days.ago.to_s :db %>
+  moderator: true
+
+# another joe blow
+joeblow:
+  id: 6
+  login: joeblow
+  email: joe@example.com
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 1.days.ago.to_s :db %>
+  activated_at: <%= 5.days.ago.to_s :db %>
+  updated_at: <%= 1.days.ago.to_s :db %>
+  

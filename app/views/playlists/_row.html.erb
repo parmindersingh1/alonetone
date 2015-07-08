@@ -1,0 +1,60 @@
+<%= cache(cache_digest(playlists)) do %>
+  <div class="playlists_row">
+    <ul>
+      <% playlists.each do |playlist| %>
+        <li>
+          <%= link_to ' ',user_playlist_path(playlist.user.login, playlist), :title => "#{playlist.title} by #{playlist.user.name}", :class=> "overlay" %>
+          <%= image_tag(playlist.cover(:album), :alt => "#{playlist.title} by #{playlist.user.name}") %>
+          <div class="playlists_home_title">
+            <%= link_to truncate(playlist.title, :length => 26), user_playlist_path(playlist.user.login, playlist), :title => "#{playlist.title} by #{playlist.user.name}" %>
+          </div>
+          <div class="playlists_home_user">
+            <%= link_to truncate(playlist.user.name, :length => 26), user_playlist_path(playlist.user.login, playlist) %>
+          </div>
+        </li>
+      
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+
+<%= cache(cache_digest(playlists)) do %>
+<% playlists.each do |playlist| %>
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                      <div class="item">
+                        <div class="pos-rlt">
+                          <!-- <div class="bottom">
+                            <span class="badge bg-info m-l-sm m-b-sm">03:20</span>
+                          </div> 
+                          <div class="item-overlay opacity r r-2x bg-black">
+                            <div class="text-info padder m-t-sm text-sm">
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star-o text-muted"></i>
+                            </div>
+                            <div class="center text-center m-t-n">
+                              <a href="#"><i class="icon-control-play i-2x"></i></a>
+                            </div>
+                            <div class="bottom padder m-b-sm">
+                              <a href="#" class="pull-right">
+                                <i class="fa fa-heart-o"></i>
+                              </a>
+                              <a href="#">
+                                <i class="fa fa-plus-circle"></i>
+                              </a>
+                            </div>
+                          </div>-->
+                          <%= link_to (image_tag(playlist.cover(:album), :alt => "#{playlist.title} by #{playlist.user.name}"), :class=> "r r-2x img-full"),user_playlist_path(playlist.user.login, playlist), :title => "#{playlist.title} by #{playlist.user.name}", :class=> "overlay" %>
+                        </div>
+                        <div class="padder-v">
+                          <%= link_to truncate(playlist.title, :length => 26), user_playlist_path(playlist.user.login, playlist), :title => "#{playlist.title} by #{playlist.user.name}" %>
+                          <%= link_to truncate(playlist.user.name, :length => 26), user_playlist_path(playlist.user.login, playlist) %>
+                        </div>
+                      </div>
+                    </div>
+          <% end %>
+  <% end %>

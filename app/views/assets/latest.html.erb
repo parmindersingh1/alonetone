@@ -1,0 +1,169 @@
+<!-- alonetone home page -->
+<%= render :partial => 'shared/signoption' unless logged_in?%>
+<%= render :partial => 'shared/self_confidence' unless logged_in? %>
+
+
+<% content_for :main do %>
+                  <a href="#" class="pull-right text-muted m-t-lg" data-toggle="class:fa-spin" ><i class="icon-refresh i-lg  inline" id="refresh"></i></a>
+                  <h2 class="font-thin m-b">Latest playlists <span class="musicbar animate inline m-l-sm" style="width:20px;height:20px">
+                    <span class="bar1 a1 bg-primary lter"></span>
+                    <span class="bar2 a2 bg-info lt"></span>
+                    <span class="bar3 a3 bg-success"></span>
+                    <span class="bar4 a4 bg-warning dk"></span>
+                    <span class="bar5 a5 bg-danger dker"></span>
+                  </span></h2>
+                  <div class="row row-sm">
+                  	<%= cache(@playlists.first.cache_key+'plisthome') do %>
+                  	<%= render 'playlists/row', :playlists => @playlists %>
+                    <% end unless @playlists.blank? %>
+                  </div>
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <% content_for :left do%>
+  <div class="sprites-latest-uploaded sprites-before-heading"></div>
+  <h2 id="latest_uploaded" class="box">Latest uploaded</h2>
+  <div class="box">
+    <%= render :partial => 'assets/asset', :collection => @assets %>
+  </div>
+  <div class="footer_box">
+    <%= link_to radio_path(:per_page => 40,:source => 'latest'), :class=> 'view_all', :title => 'latest music on alonetone' do %>
+    <span>view all </span><span class="sprites-horizontal-arrow sprites-after-heading"></span>
+    <% end %>
+  </div>
+  
+  <div class="sprites-latest-comments sprites-before-heading"></div>
+  <h2 id="latest_comments" class="box">Latest Comments</h2>
+  <div class="box">
+    <%= render :partial => 'shared/comment', :collection => @comments %>
+  </div>
+  
+  <div class="footer_box">
+    <%= link_to all_comments_path, :class => 'view_all', :title => 'view latest comments' do %>
+    <span>view all </span><span class="sprites-horizontal-arrow sprites-after-heading"></span>
+    <% end %>
+  </div>
+<% end %>
+
+
+<% content_for :right do %>
+	<div class="sprites-stars sprites-before-heading"></div>
+  <h2 id="kicking_ass" class="box">Currently kicking ass</h2>
+  <div class="box">
+    <%= render :partial => 'assets/asset', :collection => @popular %>
+  </div>
+  <div class="footer_box">
+    <%= link_to radio_path(:per_page => 40,:source => 'popular'), :class => "view_all", :title => 'alonetone radio: currently kicking ass' do %>
+    <span>view all </span><span class="sprites-horizontal-arrow sprites-after-heading"></span>
+    <% end %>
+  </div>
+  
+  <% if @followee_tracks %>
+    <div class="sprites-stars sprites-before-heading"></div>
+    <h2 id="kicking_ass" class="box">Tracks from those you follow</h2>    
+    <div class="box">
+    <%= link_to image_tag('icons/feed-icon.png'), listen_feed_path(current_user, :format => 'rss'), :alt => "Tracks from those you follow", :class => 'feed_icon_in_box' %>
+    <div>
+      <%= render :partial => 'assets/asset', :collection => @followee_tracks %>
+    </div>
+    </div>
+    <div class="footer_box">
+      <%= link_to radio_path(:per_page => 40, :source => 'those_you_follow'), :class => 'view_all', :title => 'alonetone radio: those you follow' do %>
+<span>        view all </span><span class="sprites-horizontal-arrow sprites-after-heading"></span>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="sprites-stars sprites-before-heading"></div>
+  <h2 id="recently_favorited" class="box">Recently favorited</h2>
+  <div class="box">
+    <%= render :partial => 'shared/favorite', :collection => @favorites %>
+  </div>  
+  <div class="footer_box">
+    <%= link_to radio_path(:per_page => 40, :source => 'favorites'), :class => 'view_all', :title => 'alonetone radio: recently favorited' do %>
+<span>      view all </span><span class="sprites-horizontal-arrow sprites-after-heading"></span>
+    <% end %>
+  </div>
+<% end %>
+
+                  
+                  <div class="row">
+                    <div class="col-md-7">
+                      <h3 class="font-thin">New Songs</h3>
+                      
+                      
+                      <div class="row row-sm">
+                      	<%= render :partial => 'assets/asset', :collection => @assets %>
+                       </div>
+                       
+                      </div>
+                    </div>
+                    <div class="col-md-5">
+                      <h3 class="font-thin">Top Songs</h3>
+                      <div class="list-group bg-white list-group-lg no-bg auto">                          
+                        <a href="#" class="list-group-item clearfix">
+                          <span class="pull-right h2 text-muted m-l">1</span>
+                          <span class="pull-left thumb-sm avatar m-r">
+                            <img src="assets/a4.png" alt="...">
+                          </span>
+                          <span class="clear">
+                            <span>Little Town</span>
+                            <small class="text-muted clear text-ellipsis">by Chris Fox</small>
+                          </span>
+                        </a>
+                        <a href="#" class="list-group-item clearfix">
+                          <span class="pull-right h2 text-muted m-l">2</span>
+                          <span class="pull-left thumb-sm avatar m-r">
+                            <img src="assets/a5.png" alt="...">
+                          </span>
+                          <span class="clear">
+                            <span>Lementum ligula vitae</span>
+                            <small class="text-muted clear text-ellipsis">by Amanda Conlan</small>
+                          </span>
+                        </a>
+                        <a href="#" class="list-group-item clearfix">
+                          <span class="pull-right h2 text-muted m-l">3</span>
+                          <span class="pull-left thumb-sm avatar m-r">
+                            <img src="assets/a6.png" alt="...">
+                          </span>
+                          <span class="clear">
+                            <span>Aliquam sollicitudin venenatis</span>
+                            <small class="text-muted clear text-ellipsis">by Dan Doorack</small>
+                          </span>
+                        </a>
+                        <a href="#" class="list-group-item clearfix">
+                          <span class="pull-right h2 text-muted m-l">4</span>
+                          <span class="pull-left thumb-sm avatar m-r">
+                            <img src="assets/a7.png" alt="...">
+                          </span>
+                          <span class="clear">
+                            <span>Aliquam sollicitudin venenatis ipsum</span>
+                            <small class="text-muted clear text-ellipsis">by Lauren Taylor</small>
+                          </span>
+                        </a>
+                        <a href="#" class="list-group-item clearfix">
+                          <span class="pull-right h2 text-muted m-l">5</span>
+                          <span class="pull-left thumb-sm avatar m-r">
+                            <img src="assets/a8.png" alt="...">
+                          </span>
+                          <span class="clear">
+                            <span>Vestibulum ullamcorper</span>
+                            <small class="text-muted clear text-ellipsis">by Dan Doorack</small>
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  
+             
+<%end%>

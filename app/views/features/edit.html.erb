@@ -1,0 +1,25 @@
+<h1>Editing feature</h1>
+
+<% content_for :main do %>
+    <%= form_for(@feature) do |f| %>
+     <%= render :partial => 'form', :locals =>{:f => f}%>
+
+      <p>    
+        <%= f.label :published %><br />
+        <%= f.check_box :published %>
+      </p>
+      <p>
+        <%= f.submit "Update" %>
+      </p>
+    <% end %>
+
+    <div class="static_content">
+        <% for asset in @assets %>
+            <%= asset.id.to_s%> : <%= asset.name %><br/>
+        <% end %>
+    </div>
+<% end %>
+
+
+<%= link_to 'Show', @feature %> |
+<%= link_to 'Back', features_path %>

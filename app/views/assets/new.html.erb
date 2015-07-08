@@ -1,0 +1,68 @@
+<%= render :partial => 'notices/create_playlist'  unless (@user.playlists_count > 0) || @user.assets_count < 1 %>
+
+<h1 class="spacey">upload mp3 or zip files, up to 40MB each</h1>
+
+<% content_for :main do %>	
+  <div class="upload box">
+    <h2 class="box">Upload, upload, upload</h2>
+    <div class="static_content">
+        <%= render :partial => 'form' %>
+    </div>
+    <div class="static_content">
+    By clicking "Upload!" you confirm that <span class="important">you own the copyright to the files you upload</span>
+  and accept our totally reasonable terms and conditions.
+    </div>
+    <div class="static_content">
+      Por favor publique música de la que tenga derechos de autor (es decir, que usted escribió y grabo la canción). Su cuenta sera borrada y su IP restringido si usted publica música de terceros.
+    </div>
+	</div>
+  <% if current_user.plus_enabled? %>
+  	<div class="upload box">
+      <h2 class="box">Upload wav/aif/zip source files</h2>
+      <div class="static_content">
+          <%= render :partial => 'source_files/form' if current_user.plus_enabled? %>
+      </div> 
+      <div class="static_content">
+        <strong>Congrats!</strong> Your alonetone account has been pimped out with alonetone PLUS&reg;.
+        You may upload wav/aif/zip files up to 150MB each. They remain hidden unless you give out the link.<br/><br/>
+        Forge ahead, you crafty musician, you!
+      </div>
+  	</div>
+	<% end %>
+	
+<% end %>
+
+<% content_for :right do%>
+  <div id="fineprint" class="box">
+	<h2 class="box">Terms And Conditions</h2>
+	<p class="static_content">
+		<strong>This is a free, legal service for musicians to host and distribute music.</strong><br><br>
+    We accept some non-musical content (podcasts, field recordings) but we reserve the right to remove material that doesn't fit the spirit of the site.
+	</p>
+  
+	<div class=" static_content">
+		You will only upload music that you own the rights to (i.e. you created it and did not sell exclusive rights)<br><br>
+		<strong><span style="color:red">If you upload copyrighted music we will ban your account, your IP address and report you to the gerbils in tuxedos<span></strong><br/>
+    <br>
+    We support filesharing but please don't abuse us, or else.</br>
+	</div>
+	<div class=" static_content">
+		<strong>Mp3s uploaded here will be public the minute you upload them.</strong>
+	</div>
+	<div class=" static_content">
+		By uploading a mp3 file to alonetone.com, <b>you grant alonetone.com the non-exclusive right to distribute<br/>
+		the music in any way we see fit without your further permission or notification. </b><br/>
+		<br/>
+		That means that you music will likely show up on alonetone.com, facebook, itunes, and other websites.<br/><br/>
+		
+		As the rights are non-exclusive, you keep your rights as a copyright holder.
+		You can of course sell it or distribute it elsewhere - you own it!<br/>
+	</div>
+	<div class=" static_content">
+
+		<strong>You may delete your music at any time</strong><br><br>
+    
+		All traces of your track will be removed from alonetone, ripping it out of any user's playlists, removing comments, etc
+	</div>
+	</div>
+<% end %>

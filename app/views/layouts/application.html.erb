@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<title><%= @page_title || 'alonetone, a damn fine home for musicians' %></title>
+
+	<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+
+	<%= csrf_meta_tag %>
+
+	<%= yield :css %>
+	<!-- #<link rel="alternate" type="application/rss+xml" title="Latest uploaded mp3s on alonetone" href="/latest.rss"/>
+	#<link rel="alternate" type="application/rss+xml" title="alonetone news" href="/blog.rss"/> -->
+
+	<% if Alonetone.typekit %>
+	<script type="text/javascript" src="http://use.typekit.com/<%= Alonetone.typekit %>.js"></script>
+	<script type="text/javascript">
+		try {
+			Typekit.load();
+		} catch(e) {
+		}
+	</script>
+	<% end %>
+
+	<!-- render user specific variables and js helpers -->
+	<%= render :partial => 'shared/javascript_payload' %>
+</head>
+
+<body class="">
+	<!-- <div id="container"> -->
+		<% if @sudo %>
+		<div class="sudo_bar">
+			Sudo'd as <%= current_user.name %>. <%= link_to 'Return to admin.', sudo_user_path(@sudo) %></span>
+		</div>
+		<% end %>
+
+		<section class="vbox">
+			<header class="bg-white-only header header-md navbar navbar-fixed-top-xs">
+				<%= render :partial=> 'shared/header' %>
+			</header>
+
+			<!-- <div id="wrapper">
+			<div id="content" class="content">    -->
+
+			<section>
+				<section class="hbox stretch">
+
+					<aside class="bg-black dk nav-xs aside hidden-print" id="nav">
+						<%= render :partial=> 'shared/sidebar' %>
+					</aside>
+					<!-- /.aside -->
+
+					
+
+					<section id="content">
+						<section class="hbox stretch">
+							<section>
+								<section class="vbox">
+									<section id="bjax-target" class="scrollable padder-lg w-f-md">
+									<div class="row" style="text-align:center;">
+										<%= check_for_and_display_welcome_back %>
+										<%= check_for_and_display_flashes %>
+									 </div>
+									<%=
+										 if yield(:pages).present?
+										                      yield(:pages)
+										                    elsif yield(:forums).present?
+										                      yield(:forums)
+										                    else
+										                    yield
+										                    end
+										%>
+
+									<div id="static">
+										<%= yield :static %>
+									</div>
+
+									<div id="columns">
+										
+											<%= yield :main %>
+										
+									</div> -
+									</section>
+									<footer class="footer bg-dark">
+										<%= render :partial => 'shared/footer' %>
+									</footer>
+
+
+								</section>
+							</section>
+						 <aside class="aside-md bg-light dk" id="sidebar">
+							<%= render 'shared/right_sidebar'%>
+						</aside>	
+						</section>
+						<a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen,open" data-target="#nav,html"></a>
+					</section>
+					<!-- </div>
+					</div> -->
+					
+
+				</section>
+			</section>
+			
+	<!-- </div> -->
+
+	<!--<div class="footer">
+		<%#= cache('footer', :expires_in => 3.minutes) do %>
+		<%#= render :partial => 'shared/footer' %>
+		<% #end %>
+	</div>-->
+	</section><!-- vbox -->
+	<%= javascript_include_tag "application" %>
+	<%= render :partial => 'shared/analytics' %>
+</body>
+</html>

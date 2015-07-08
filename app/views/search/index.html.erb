@@ -1,0 +1,21 @@
+<% unless @users.present? or @assets.present? %>
+  <h2>Hm, didn't find any users or tracks named "<%= @query %>"</h2>
+<% else %>
+  <h1>Results for "<%= @query %>"</h1>
+<% end %>
+
+<% if @users.present? %>
+  <% content_for :main do %>
+  <h2>Artists and Listeners</h2>
+  <div id="user_search_results">
+    <%= render :partial => 'shared/user', :collection => @users %>
+  </div>
+  <% end %>
+
+
+<% if @assets.present? %>
+  
+  <h2>Tracks that match "<%= @query %>"</h2>
+  <%= render :partial => 'assets/asset', :collection => @assets if @assets %>
+  <% end %>
+<% end %>

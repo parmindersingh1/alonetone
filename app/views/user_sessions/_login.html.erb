@@ -1,0 +1,26 @@
+<%= simple_form_for @user_session do |f| %>
+<div class="form-group">
+  <%= f.input :login, :input_html => { class: "form-control rounded input-lg text-center no-border", :placeholder => "Login" }, label: false, :wrapper => false %>
+</div>
+<div class="form-group">
+  <%= f.input :password, :input_html => { class: "form-control rounded input-lg text-center no-border", :placeholder => "Password"},  label: false, :wrapper => false %>
+  </div>
+<button type="submit" class="btn btn-lg btn-warning lt b-white b-2x btn-block btn-rounded"><i class="icon-arrow-right pull-right"></i><span class="m-r-n-lg">Sign in</span></button>
+  <%#= f.button :submit, "Come on in..." %>
+<% end %>
+
+<div class="text-center m-t m-b">
+  <%= link_to "Forgot Your Password?", "#reset-password", :class => "slide_open_href" %>
+</div>
+<div class="line line-dashed"></div>
+<p class="text-muted text-center"><small>Do not have an account?</small></p>
+<a href="<%=url_for :controller => 'users', :action => 'new' %>" class="btn btn-lg btn-info btn-block rounded">Create an account</a>
+<%= form_tag password_resets_path, :id => 'reset-password', :style => 'display:none' do |f| %>
+    <label for="email"><%= 'Enter the email address you signed up with' %></label><br>
+    <%= text_field 'email','' %>
+    <%= submit_tag 'Send Me An Email so I can login again!'%>
+	<hr>
+<% end -%>
+        
+  
+

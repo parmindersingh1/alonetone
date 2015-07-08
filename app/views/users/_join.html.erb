@@ -1,0 +1,27 @@
+
+
+<div id="signup" class="static_content box">
+	<%= simple_form_for(@user) do |f| -%>
+	<div class="form-group">
+    <%= f.input :login, :hint => "(Letters and numbers only)",:input_html => { class: "form-control rounded input-lg text-center no-border", :placeholder => "Username"},  label: false, :wrapper => false %>
+    </div>
+    <div class="form-group">
+    <%= f.input :email, :hint => "(we will send you an activation email)",:input_html => { class: "form-control rounded input-lg text-center no-border", :placeholder => "Email"},  label: false, :wrapper => false %>
+    </div>
+    <div class="form-group">
+    <%= f.input :password, :hint => "(pick a nice password)",:input_html => { class: "form-control rounded input-lg text-center no-border", :placeholder => "Password"},  label: false, :wrapper => false%>
+    </div>
+     <div class="form-group">
+    <%= f.input :password_confirmation, :hint => "(enter it once again)",:input_html => { class: "form-control rounded input-lg text-center no-border", :placeholder => "Confirm Password"},  label: false, :wrapper => false %>
+    </div>
+    <%#= raw(recaptcha_tags(:display => {:theme => 'white'})) unless @bypass_recaptcha %>
+    <br/>
+    <button type="submit" class="btn btn-lg btn-warning lt b-white b-2x btn-block btn-rounded"><i class="icon-arrow-right pull-right"></i><span class="m-r-n-lg">Create Account</span></button>
+    
+	<% end %>
+</div>
+ 
+
+
+
+

@@ -1,0 +1,85 @@
+.player {
+  margin-top: $baseline * .8;
+  margin-bottom: $baseline + 7px;
+  height: ($baseline * 5) - 2px; 
+  border-top: 1px solid $light-gray;
+  border-bottom: 1px solid $light-gray;
+  display: block;
+  position: relative;
+  background-color: $not-quite-white-opaque;
+
+  &.stuck {
+    position: fixed;
+    top: 0px;
+    width: 650px;
+    height: ($baseline * 2.5);
+    padding-top: 4px;
+    margin-top: 0px;
+    border-top: 0px;
+
+    .waveform {
+      height: 100%;
+    }
+
+    .play-button, .pause-button {
+      margin-top: 5px;
+      padding: 0px;
+    }
+  }
+  
+  .time{
+    color: $lightest-gray;
+    position:absolute;
+    right:0;
+    font-size: 12px;
+    display:inline-block;
+  }
+  .play-button, .pause-button{
+    color: $not-quite-black;
+    margin-top: $baseline;
+    padding: ($baseline / 2) - 1;
+    text-indent: 11px;
+    width:54px;
+    height:54px;
+    vertical-align: middle;
+    display: inline-block;
+    border: 1px solid $light-gray;
+    border-radius: 50%;
+    cursor: pointer;
+    &:hover{
+      color:$black;
+    }
+  }
+  .pause-button{
+    color: $light-gray;
+    text-indent: 4.5px;  
+  }
+
+  .waveform {
+    position: absolute;
+    display: inline-block;
+    right:0;
+    width: 540px;
+    height: 100%;
+    .seekbar {
+      width: 1px;
+      height: 100%;
+      background-color: #aaa;
+      position: absolute;
+      top: 0px;
+    }
+    
+    &:hover .seekbar {
+      display: block;
+    }
+    
+    &:not(:hover) .seekbar {
+      display: none;
+    }
+  }
+
+  .download-button {
+    font-size: 34px;
+    display: inline-block;
+  }
+}

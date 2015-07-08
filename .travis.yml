@@ -1,0 +1,29 @@
+language: ruby
+rvm: 2.0.0
+install: bin/wad
+before_install:
+  - sudo apt-get install -y libsndfile-dev lame
+before_script:
+  - mysql -e 'create database alonetone_test';
+  - bundle exec rake copy_config
+  - bundle exec rake db:drop
+  - bundle exec rake db:create
+  - bundle exec rake db:schema:load
+  - bundle exec rake db:seed
+script: bundle exec rake spec
+notifications:
+  email:
+    on_success: never
+    on_failure: never
+  campfire:
+    on_success: always
+    on_failure: change
+    template:
+      - 'https://travis-ci.org/sudara/alonetone.png'
+      - "Build %{build_number}: %{message} Deets: %{build_url}"
+    rooms:
+      secure: JojINEVLXaS8X348h26ghP2vQ9l9cGXmHogfEO4QIEQ9whl1le6e3xzcLUKxjfRTZSHleA4fYeXNtCWh3+mbSxqw+wzUQEosiH93yc0c6M+LVroDSRgE2s9iBZmnQn0q3psVF4YREaWILkGrH3JLRfmDiOjoJv8E9Hk7p+odRxw=
+env:
+  global:
+    - S3_BUCKET_NAME=junkinthetrunk
+    - secure: O45V0oniMMy2SfZ4GlCafzkPyvbNvf+ppUd9hu82RLQpANI7l7NKGa7gCW/FYlcDDcIuUkut6D21eEWwPG0x8bLqSIoE9x5kSK6xuOoqCKHkznWxsfMVI+CjoVAkekvS8iDlnu3BTIa7m0264uaJovGhUDWN43YJ+Z9sRxwYh8g=

@@ -1,0 +1,13 @@
+
+
+	<%= form_tag search_url, :id =>'search_form', :class=>"navbar-form navbar-left input-s-lg m-t m-l-n-xs hidden-xs", :role=>"search" do %>
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-btn">            	         	
+              <button type="submit" id = 'search_button' class="btn btn-sm bg-white btn-icon rounded"><i class="fa fa-search"></i></button>
+            </span>
+             <%= text_field_tag 'query', (@query || session[:last_query]), :class=>"form-control input-sm no-border rounded", :placeholder=>"Search songs, albums..." %>
+          </div>
+        </div>
+        <% end %>
+      

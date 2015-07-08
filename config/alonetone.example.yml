@@ -1,0 +1,42 @@
+---
+development: &defaults
+  show_debug_info: true
+  app_name: YourAppName
+  url: yourapp.com
+  greenfield_url: greenfield.dev
+  email: support@yourapp.com
+  secret: f041541efd6d104c7051041ec61e7aa5
+  storage: filesystem
+  bucket: 
+  amazon_id: 
+  amazon_key:
+  rakismet_key: "REPLACEME"
+  defensio:  
+  campfire_url: nil
+  video_size: width="370" height="308"
+  enable_defensio: false
+  default_user_images: true
+  play_dummy_mp3s: false # set to true if playing off of production dump without s3 cred
+  ga: 
+  get_clicky: 
+  typekit: 
+  smtp_settings:
+    address:
+    port: 25 # ports 587 and 2525 are also supported with STARTTLS
+    enable_starttls_auto: true # detects and uses STARTTLS
+    user_name:
+    password:
+    authentication: 'login'
+    domain: yourapp.com
+
+test:
+  <<: *defaults
+  storage: filesystem
+  show_debug_info: false
+
+production:
+  <<: *defaults
+  show_debug_info: false
+  enable_defensio: true
+  campfire_url: yourapp.campfirenow.com/chat
+
